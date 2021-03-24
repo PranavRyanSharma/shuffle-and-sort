@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Shuffle and Sort</title>
+    <style>
+        div.container {
+            width: 76%;
+            margin: auto;
+            background: #efefef;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        div.container ul li {
+            list-style: none;
+            color: #FFFFFF;
+            padding: 6% 0%;
+            justify-content: center;
+            display: flex;
+            width: 33%;
+            align-items: center;
+            font-size: 5em;
+        }
+
+        div.container button {
+            background: #72C3DC;
+            padding: 11px;
+            border-radius: 5px;
+            display: block;
+            border: none;
+            margin: 10px 0px;
+            cursor: pointer;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            width: 87%;
+            box-shadow: 0px 4px 0px #2b8ead;
+        }
+
+        div.container button:active,
+        button:focus {
+            outline: none;
+        }
+
+        div.container ul {
+            padding: 0;
+            display: flex;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        ul .card-1,
+        ul .card-8 {
+            background: #6f98a8;
+        }
+
+        ul .card-2,
+        ul .card-4 {
+            background: #2b8ead;
+        }
+
+        ul .card-3,
+        ul .card-5,
+        ul .card-9 {
+            background: #2f454e;
+        }
+
+        ul .card-6,
+        ul .card-7 {
+            background: #bfbfbf;
+        }
+
+        .container footer {
+            display: flex;
+            font-style: italic;
+            font-size: 0.8em;
+            justify-content: center;
+        }
+
+        .container .btn-container {
+            flex-direction: column;
+            align-items: center;
+            display: flex;
+            width: 30%;
+        }
+
+        .container header {
+            display: flex;
+            background: white;
+            border-bottom: 3px solid #bfbfbf;
+            justify-content: center;
+        }
+
+        .container .cards-container {
+            overflow: hidden;
+            width: 69%;
+            min-height: 160px;
+        }
+
+        .container .content-container {
+            display: flex;
+            flex-direction: row-reverse;
+        }
+
+        @media screen and (max-width: 400px) {
+
+            div.container {
+                background: #ffffff;
+            }
+
+            .container header {
+                background: black;
+                color: white;
+            }
+
+            div.container ul li {
+                color: #000000;
+                padding: 3% 0%;
+                width: 100%;
+                margin: 2px 0;
+                background: #efefef;
+                font-size: 1.2em;
+            }
+
+            ul .card-1,
+            ul .card-8 {
+                border-left: 6px solid #6f98a8;
+            }
+
+            ul .card-2,
+            ul .card-4 {
+                border-left: 6px solid #2b8ead;
+            }
+
+            ul .card-3,
+            ul .card-5,
+            ul .card-9 {
+                border-left: 6px solid #2f454e;
+            }
+
+            ul .card-6,
+            ul .card-7 {
+                border-left: 6px solid #bfbfbf;
+            }
+
+            .container .content-container {
+                display: block;
+            }
+
+            div.container ul {
+                padding: 0;
+                display: flex;
+                margin: 0 14px;
+                flex-wrap: wrap;
+            }
+
+            .container .cards-container {
+                width: 100%;
+            }
+
+            div.container button {
+                margin: 10px 3px;
+                width: 30%;
+            }
+
+            .container .btn-container {
+                flex-direction: row;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
+
+    <script>
+        var cards = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+        window.onload = function () {
+            sortCards();
+        }
+
+        function suffleCards() {
+
+            for (var i = cards.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = cards[i];
+                cards[i] = cards[j];
+                cards[j] = temp;
+            }
+            cards = cards;
+
+            var ul = document.getElementById('cards');
+            ul.innerHTML = '';
+            for (i = 1; i <= cards.length; i++) {
+                var x = document.createElement("LI");
+                x.classList.add("card-" + cards[i - 1]);
+                var t = document.createTextNode(cards[i - 1]);
+                x.appendChild(t);
+                document.getElementById("cards").appendChild(x);
+            }
+        }
+
+
+        function sortCards() {
+            var ul = document.getElementById('cards');
+            ul.innerHTML = '';
+            for (i = 1; i <= cards.length; i++) {
+                var x = document.createElement("LI");
+                x.classList.add("card-" + i);
+                var t = document.createTextNode(i);
+                x.appendChild(t);
+                document.getElementById("cards").appendChild(x);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <p>Shuffel and Sort</p>
+        </header>
+        <div class="content-container">
+            <div class="btn-container">
+                <button id="shuffle" type="button" onclick="suffleCards()">Shuffle</button>
+                <button id="sort" type="button" onclick="sortCards()">Sort</button>
+            </div>
+            <div class="cards-container">
+                <ul id="cards"></ul>
+            </div>
+        </div>
+        <footer>
+            <p>Shuffel and Sort by Pranav Kumar</p>
+        </footer>
+    </div>
+</body>
+
+</html>
